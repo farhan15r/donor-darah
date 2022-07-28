@@ -23,7 +23,7 @@
             <div class="header-list">
                 <ul>
                     <li onclick="window.location = '/user/profile'">Profile</li>
-                    @if ($user->id_form)
+                    @if (auth()->user()->id_form !== null)
                         <li onclick="window.location = '/user/form/show'">Form</li>
                     @endif
                     <li>
