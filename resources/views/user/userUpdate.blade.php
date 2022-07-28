@@ -22,9 +22,9 @@
             </div>
             <div class="header-list">
                 <ul>
-                    <li onclick="window.location = '/user/profile'">Back</li>
+                    <li onclick="window.location = '/profile'">Back</li>
                     <li>
-                        <form action="/logout/user" method="POST">
+                        <form action="/logout" method="POST">
                             @csrf
                             <button
                                 style="background: none;
@@ -44,7 +44,7 @@
         <div class="content">
             <div class="box">
                 <div class="form">
-                    <form action="/user/update" method="POST">
+                    <form action="/profile/update" method="POST">
                         <h3 class="box-title">Update Biodata</h3>
                         @csrf
                         <br>

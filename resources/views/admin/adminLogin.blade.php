@@ -10,6 +10,11 @@
 </head>
 
 <body>
+    @if (session()->has('loginError'))
+        <script>
+            alert('Maaf USername atau Passowrd anda salah, silahkan coba kembali');
+        </script>
+    @endif
 
     <img class="background" src="/img/background.png">
     <img class="logo-tangan" src="/img/background2.png">

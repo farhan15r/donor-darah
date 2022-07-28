@@ -24,6 +24,7 @@ return new class extends Migration {
             $table->string('alamat_lengkap');
             $table->string('jenis_kelamin');
             $table->string('id_form')->nullable();
+            $table->boolean('is_admin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

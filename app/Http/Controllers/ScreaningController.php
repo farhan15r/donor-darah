@@ -79,7 +79,7 @@ class ScreaningController extends Controller
         //sesion flash
         session()->flash('berhasil', 'berhasil input form');
 
-        return redirect('/user/dashboard');
+        return redirect('/dashboard');
     }
 
     /**
@@ -88,11 +88,11 @@ class ScreaningController extends Controller
      * @param  \App\Models\Screaning  $screaning
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show($id)
     {
         $data = [
-            'screaning' => Screaning::firstWhere('id', auth()->user()->id_form),
-            'hasil' =>  Hasil::firstWhere('id_form', auth()->user()->id_form)
+            'screaning' => Screaning::firstWhere('id', $id),
+            'hasil' =>  Hasil::firstWhere('id_form', $id)
         ];
 
         return view('user.userHasilForm', $data);

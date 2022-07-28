@@ -22,9 +22,9 @@
             </div>
             <div class="header-list">
                 <ul>
-                    <li onclick="window.location = '/user/dashboard'">Back</li>
+                    <li onclick="window.location = '/dashboard'">Back</li>
                     <li>
-                        <form action="/logout/user" method="POST">
+                        <form action="/logout" method="POST">
                             @csrf
                             <button
                                 style="background: none;

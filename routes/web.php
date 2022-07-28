@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ScreaningController;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,27 +19,28 @@ use App\Http\Controllers\ScreaningController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->middleware('guest')->name('login');
 
 Route::get('/login/admin', function () {
     return view('admin.adminLogin');
-});
+})->middleware('guest');
 
 Route::post('/login/admin', [AdminController::class, 'login']);
 
 Route::get('/login/user', function () {
     return view('user.userLogin');
-});
+})->middleware('guest');
 
 Route::post('/login/user', [UserController::class, 'login']);
-Route::post('/logout/user', [UserController::class, 'logout']);
 Route::post('/register/user', [UserController::class, 'toRegister']);
 Route::post('/register/user/form', [UserController::class, 'Register']);
 
-Route::get('/user/dashboard', [UserController::class, 'index']);
-Route::get('/user/form', [UserController::class, 'form']);
-Route::post('/user/form', [ScreaningController::class, 'store']);
-Route::get('/user/form/show', [ScreaningController::class, 'show']);
-Route::get('/user/profile', [UserController::class, 'show']);
-Route::get('/user/update', [UserController::class, 'edit']);
-Route::post('/user/update', [UserController::class, 'update']);
+Route::post('/logout', [UserController::class, 'logout']);
+Route::get('/dashboard', [UserController::class, 'index'])->middleware('auth');
+Route::get('/form', [UserController::class, 'form'])->middleware('auth');
+Route::post('/form', [ScreaningController::class, 'store']);
+Route::get('/form/show/{screaning:id}', [ScreaningController::class, 'show'])->middleware('auth');
+Route::get('/profile', [UserController::class, 'show'])->middleware('auth');
+Route::get('/profile/update', [UserController::class, 'edit'])->middleware('auth');
+Route::post('/profile/update', [UserController::class, 'update']);
+Route::get('/profile/delete/{user:nik}', [UserController::class, 'destroy'])->middleware('auth');

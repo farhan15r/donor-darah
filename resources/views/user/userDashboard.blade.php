@@ -22,12 +22,12 @@
             </div>
             <div class="header-list">
                 <ul>
-                    <li onclick="window.location = '/user/profile'">Profile</li>
+                    <li onclick="window.location = '/profile'">Profile</li>
                     @if (auth()->user()->id_form !== null)
-                        <li onclick="window.location = '/user/form/show'">Form</li>
+                        <li onclick="window.location = '/form/show/{{ auth()->user()->id_form }}'">Form</li>
                     @endif
                     <li>
-                        <form action="/logout/user" method="POST">
+                        <form action="/logout" method="POST">
                             @csrf
                             <button
                                 style="background: none;
@@ -61,7 +61,7 @@
                 </ul>
                 {{-- form screadning --}}
                 @if (!auth()->user()->id_form)
-                    <a href='/user/form' class='btn-scr' style='--clr:#c3073f;'><span>Lakukan Screening</span></a>
+                    <a href='/form' class='btn-scr' style='--clr:#c3073f;'><span>Lakukan Screening</span></a>
                 @endif
             </div>
             <div class="logo-wrapper">

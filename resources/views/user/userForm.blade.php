@@ -31,7 +31,7 @@
         <div class="content">
             <div class="box">
                 <div class="form">
-                    <form action="" method="POST">
+                    <form action="/form" method="POST">
                         <h3 class="box-title">SCREENING PENDONOR</h3> <br>
                         @csrf
                         <h5>NOTES: Tolong anda isi form ini berdasarkan kebenaran dan keadaan yang terjadi, karena

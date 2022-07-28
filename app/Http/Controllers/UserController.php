@@ -52,7 +52,7 @@ class UserController extends Controller
         if (auth::attempt((['username' => $credentials['username'], 'password' => $credentials['password']]))) {
             $request->session()->regenerate();
 
-            return redirect('/user/dashboard');
+            return redirect('/dashboard');
         }
 
         return back()->with('loginError', 'Login failed.');
@@ -79,6 +79,15 @@ class UserController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->is_admin) {
+            $data = [
+                'users' => User::where('is_admin', false)->get(),
+            ];
+            return view('admin.adminDashboard', $data);
+        }
+        $data = [
+            'user' => auth()->user()
+        ];
         return view('user.userDashboard');
     }
 
@@ -114,6 +123,9 @@ class UserController extends Controller
         $data = [
             'user' => auth()->user()
         ];
+        if (auth()->user()->is_admin) {
+            return view('admin.adminProfile', $data);
+        }
         return view('user.userProfile', $data);
     }
 
@@ -156,7 +168,7 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update($validated);
 
-        return redirect('/user/profile');
+        return redirect('/profile');
     }
 
     /**
@@ -165,8 +177,11 @@ class UserController extends Controller
      * @param  \App\Models\users  $users
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $users)
+    public function destroy($nik)
     {
-        //
+        $user = User::firstWhere('nik', $nik);
+        $user->delete();
+
+        return redirect('/user/dashboard')->with('success', 'Post has been deleted');
     }
 }

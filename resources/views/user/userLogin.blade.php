@@ -11,30 +11,30 @@
 
 <body>
     @if (session()->has('berhasil'))
-    <script>
-        alert('Register telah berhasil, silahkan login menggunakan akun anda yang baru');
-    </script>
+        <script>
+            alert('Register telah berhasil, silahkan login menggunakan akun anda yang baru');
+        </script>
     @endif
 
     @if (session()->has('loginError'))
-    <script>
-        alert('Maaf USername atau Passowrd anda salah, silahkan coba kembali');
-    </script>
+        <script>
+            alert('Maaf USername atau Passowrd anda salah, silahkan coba kembali');
+        </script>
     @endif
 
     <img class="background" src="/img/background.png">
     <img class="logo-tangan" src="/img/background2.png">
 
     @error('username')
-    <script>
-        alert('Username sudah dipakai, silahkan menggunakan username lain');
-    </script>
+        <script>
+            alert('Username sudah dipakai, silahkan menggunakan username lain');
+        </script>
     @enderror
 
     @error('password')
-    <script>
-        alert('password tidak sama dengan confirmation password, silahkan coba lagi');
-    </script>
+        <script>
+            alert('password tidak sama dengan confirmation password, silahkan coba lagi');
+        </script>
     @enderror
 
     <div class="header">
