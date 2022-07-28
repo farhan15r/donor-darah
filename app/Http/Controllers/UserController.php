@@ -183,6 +183,6 @@ class UserController extends Controller
         $user = User::firstWhere('nik', $nik);
         $user->delete();
 
-        return redirect('/user/dashboard')->with('success', 'Post has been deleted');
+        return redirect('/dashboard')->with('success', 'Post has been deleted');
     }
 }
