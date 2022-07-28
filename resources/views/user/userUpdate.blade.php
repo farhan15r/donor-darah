@@ -80,7 +80,7 @@
                                 </td>
                             </tr>
 
-                            @if ($user->form_id)
+                            @if ($user->form_id !== null)
                                 <tr>
                                     <td>Jenis Kelamin :</td>
                                     <td>
