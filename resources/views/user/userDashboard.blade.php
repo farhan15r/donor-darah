@@ -23,8 +23,9 @@
             <div class="header-list">
                 <ul>
                     <li onclick="window.location = '/user/profile'">Profile</li>
-                    <!--  -->
-                    <li onclick="window.location = '/user/form/show'">Form</li>
+                    @if ($user->id_form)
+                        <li onclick="window.location = '/user/form/show'">Form</li>
+                    @endif
                     <li>
                         <form action="/logout/user" method="POST">
                             @csrf
