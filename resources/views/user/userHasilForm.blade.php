@@ -118,11 +118,10 @@
                                     text-align: center;
                                 }
                             </style>
-                            {{ $alasan = true }}
                         @endif
                     </h3>
                     <h5>
-                        @if ($alasan)
+                        @if ($hasil->hasil_form === 'Tidak dapat mendonorkan darah')
                             <br />
                             Alasan :
                             <br />

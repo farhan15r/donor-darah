@@ -79,7 +79,7 @@ class ScreaningController extends Controller
         //sesion flash
         session()->flash('berhasil', 'berhasil input form');
 
-        return redirect('/user/dashboard');
+        return redirect('/user/form');
     }
 
     /**
