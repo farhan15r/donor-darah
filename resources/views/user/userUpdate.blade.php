@@ -80,7 +80,7 @@
                                 </td>
                             </tr>
 
-                            @if (!$user->form_id)
+                            @if (!$user->id_form)
                                 <tr>
                                     <td>Jenis Kelamin :</td>
                                     <td>
@@ -99,17 +99,17 @@
                                         </label>
                                     </td>
                                 </tr>
-                            @else
-                                <tr>
-                                    <td>Jenis Kelamin (Yang Terdata)</td>
-                                    <td>: {{ $user->jenis_kelamin }}</td>
-                                </tr>
-                            @endif
                         </table>
-
-
+                    @else
+                        <tr>
+                            <td>Jenis Kelamin (Yang Terdata)</td>
+                            <td>: {{ $user->jenis_kelamin }}</td>
+                        </tr>
                         </table>
                         <p>Jenis kelamin tidak bisa diganti, karena anda sudah mengisi form</p>
+                        @endif
+
+
 
                         <button type="submit">UPDATE</button>
                     </form>
