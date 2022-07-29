@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <img class="background" src="/img/background.png">
+    <img class="background" src="/img/background.jpeg">
 
     <div class="header">
         <div class="header-logo">

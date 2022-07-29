@@ -14,14 +14,16 @@ return new class extends Migration {
     {
         Schema::create('screanings', function (Blueprint $table) {
             $table->id();
-            $table->string('umur');
-            $table->string('berat_badan');
-            $table->string('hiv');
-            $table->string('pasangan_hiv');
-            $table->string('kontak_hepatitis');
-            $table->string('suntik');
-            $table->string('riwayat_donor');
-            $table->string('sex_period');
+            $table->boolean('sehat')->nullable();
+            $table->boolean('minum_obat')->nullable();
+            $table->boolean('demam')->nullable();
+            $table->boolean('cabut_gigi')->nullable();
+            $table->boolean('hiv')->nullable();
+            $table->boolean('kontak_hepatitis')->nullable();
+            $table->boolean('sex_period')->nullable();
+            $table->boolean('riwayat_donor')->nullable();
+            $table->boolean('sarapan')->nullable();
+            $table->boolean('hamil')->nullable();
             $table->timestamps();
         });
     }

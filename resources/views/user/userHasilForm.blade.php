@@ -52,48 +52,50 @@
                             <td>: {{ auth()->user()->username }}</td>
                         </tr>
                         <tr>
-                            <td>Umur</td>
-                            <td>: {{ $screaning->umur }} Tahun</td>
+                            <td>Apakah anda sehat?</td>
+                            <td>: {{ $screaning->sehat ? 'Ya' : 'Tidak' }}</td>
                         </tr>
                         <tr>
-                            <td>Berat Badan</td>
-                            <td>: {{ $screaning->berat_badan }} Kg</td>
+                            <td>Apakah anda sedang minum obat? :</td>
+                            <td>: {{ $screaning->minum_obat ? 'Ya' : 'Tidak' }}</td>
                         </tr>
                         <tr>
-                            <td>Apakah pernah mengidap HIV/AIDS?</td>
-                            <td>: {{ $screaning->hiv }}</td>
+                            <td>Apakah anda sedang sakit kepala atau demam?</td>
+                            <td>: {{ $screaning->demam ? 'Ya' : 'Tidak' }}</td>
                         </tr>
                         <tr>
-                            <td>Apakah anda memiliki pasangan yang mengidap HIV/AIDS? :</td>
-                            <td>: {{ $screaning->pasangan_hiv }}</td>
+                            <td>Apakah anda mencabut gigi dalam 1 minggu ini?</td>
+                            <td>: {{ $screaning->cabut_gigi ? 'Ya' : 'Tidak' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Apakah anda mengidap HIV/AIDS?</td>
+                            <td>: {{ $screaning->hiv ? 'Ya' : 'Tidak' }}</td>
                         </tr>
                         <tr>
                             <td>Apakah anda atau pasangan pernah melakukan kontak dengan seseorang yang memiliki
-                                hepatitis B atau C?</td>
-                            <td>: {{ $screaning->kontak_hepatitis }}</td>
+                                hepatitis
+                                B atau C?</td>
+                            <td>: {{ $screaning->kontak_hepatitis ? 'Ya' : 'Tidak' }}</td>
                         </tr>
                         <tr>
-                            <td>Apakah pernah menyuntikkan atau disuntikkan obat-obatan tanpa sepengetahuan dokter</td>
-                            <td>: {{ $screaning->suntik }}</td>
+                            <td>Apakah pernah melakukan oral atau anal seks tanpa menggunakan pengaman (kondom)?</td>
+                            <td>: {{ $screaning->kontak_hepatitis ? 'Ya' : 'Tidak' }}</td>
                         </tr>
-
-                        @if (auth()->user()->jenis_kelamin === 'Laki-Laki')
+                        <tr>
+                            <td>Apakah anda mendonorkan darah dalam 2 bulan terakhir?</td>
+                            <td>: {{ $screaning->riwayat_donor ? 'Ya' : 'Tidak' }}</td>
+                        </tr>
+                        <tr>
+                            <td>Apakah anda sudah sarapan hari ini?</td>
+                            <td>: {{ $screaning->sarapan ? 'Ya' : 'Tidak' }}</td>
+                        </tr>
+                        @if (auth()->user()->jenis_kelamin === 'Perempuan')
                             <tr>
-                                <td>Apakah pernah melakukan oral atau anal seks tanpa menggunakan pengaman (kondom)?
+                                <td>Apakah andasedang hamil??
                                 </td>
-                                <td>: {{ $screaning->sex_period }}</td>
-                            </tr>
-                        @elseif (auth()->user()->jenis_kelamin === 'Perempuan')
-                            <tr>
-                                <td>Apakah Sedang Menstruasi?</td>
-                                <td>: {{ $screaning->sex_period }}</td>
+                                <td>: {{ $screaning->hamil ? 'Ya' : 'Tidak' }}</td>
                             </tr>
                         @endif
-
-                        <tr>
-                            <td>Kapan terakhir kali anda mendonorkan darah?</td>
-                            <td>: {{ $screaning->riwayat_donor }}</td>
-                        </tr>
                     </table>
 
 
@@ -125,40 +127,49 @@
                             <br />
                             Alasan :
                             <br />
-                            @if ($screaning->umur < 17 || $screaning->umur > 50)
-                                {{ '- Karena batas umur untuk mendonor darah adalah >= 17 tahun dan <= 50 tahun' }}
+                            @if (!$screaning->sehat)
+                                {{ '- Karena anda sedang tidak sehat' }}
                                 <br />
                             @endif
-                            @if ($screaning->berat_badan < 47)
-                                {{ '- Karena minimal berat badan untuk mendonor adalah >= 47 KG' }}
+                            @if ($screaning->minum_obat)
+                                {{ '- Karena anda sedang minum obat' }}
                                 <br />
                             @endif
-                            @if ($screaning->hiv === 'Pernah')
+                            @if ($screaning->demam)
+                                {{ '- Karena anda sedang demam' }}
+                                <br />
+                            @endif
+                            @if ($screaning->cabut_gigi)
+                                {{ '- Karena anda pernah cabut gigi dalam seminggu terakhir' }}
+                                <br />
+                            @endif
+                            @if ($screaning->hiv)
                                 {{ '- Karena anda mengidap HIV/AIDS' }}
                                 <br />
                             @endif
-                            @if ($screaning->kontak_hepatitis === 'Pernah')
-                                {{ '- Karena anda pernah melakukan kontak dengan seseorang yang memiliki penyakit hepatitis B atau C, dikhawatirkan anda tertular pada penyakit tersebut' }}
+                            @if ($screaning->kontak_hepatitis)
+                                {{ '- Karena anda atau pasangan pernah melakukan kontak dengan seseorang yang memiliki hepatitis
+                                                                                                                                                                                                                                                                                                B atau C' }}
                                 <br />
                             @endif
-                            @if ($screaning->suntik === 'Pernah')
-                                {{ '- Karena anda pernah menyuntik obat tanpa sepengetahuan dokter, dikhawatirkan obat tersebut akan berdampak buruk bagi seseorang' }}
+                            @if ($screaning->sex_period)
+                                {{ '- Karena anda pernah melakukan oral atau anal seks tanpa menggunakan pengaman(kondom)' }}
                                 <br />
                             @endif
-                            @if (auth()->user()->jenis_kelamin === 'Laki-Laki')
-                                @if ($screaning->sex_period === 'Pernah')
-                                    {{ '- Karena anda pernah melakukan oral atau anal seks tanpa menggunakan pengaman(kondom)' }}
+                            @if ($screaning->riwayat_donor)
+                                {{ '- Karena anda sudah mendonorkan darah anda dalam sebulan terakhir' }}
+                                <br />
+                            @endif
+                            @if (!$screaning->sarapan)
+                                {{ '- Karena anda belum sarapan' }}
+                                <br />
+                            @endif
+                            @if (auth()->user()->jenis_kelamin === 'Perempuan')
+                                @if ($screaning->hamil)
+                                    {{ '- Karena anda sedang hamil' }}
                                     <br />
                                 @endif
-                            @elseif (auth()->user()->jenis_kelamin === 'Perempuan')
-                                @if ($screaning->sex_period === 'Iya')
-                                    {{ '- Karena anda sedang menstruasi' }}
-                                    <br />
-                                @endif
-                            @endif
-                            @if ($screaning->riwayat_donor === '<=3 Bulan')
-                                {{ '- Karena anda sudah mendonor kurang dari sama dengan 3 bulan' }}
-                                <br />
+
                             @endif
                         @endif
                     </h5>

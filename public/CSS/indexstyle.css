@@ -39,7 +39,7 @@ li {
     margin-top: 25px;
     margin-left: 30px;
     font-size: 40px;
-    color: #edf2f4;
+    color: #17191a;
 }
 
 .header {
@@ -73,12 +73,13 @@ li {
     font-size: 20px;
     padding-left: 125px;
     padding-top: 150px;
-    color: #edf2f4;
+    color: #17191a;
 }
 
 .wrapper-center {
+    background-color: rgba(122, 122, 122, 0.493);
     position: relative;
-    left: 180px;
+    padding-left: 180px;
     bottom: 5px;
 }
 
@@ -91,7 +92,7 @@ li {
     font-size: 20px;
     width: 75px;
     top: 150px;
-    left: 440px;
+    left: 617px;
     text-align: center;
     background: #edf2f4;
     color: #2b2d42;

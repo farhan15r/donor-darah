@@ -38,33 +38,40 @@ class ScreaningController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'umur' => 'required',
-            'berat_badan' => 'required',
-            'hiv' => 'required',
-            'pasangan_hiv' => 'required',
-            'kontak_hepatitis' => 'required',
-            'suntik' => 'required',
-            'riwayat_donor' => 'required',
-            'sex_period' => 'required'
+            'sehat' => '',
+            'minum_obat' => '',
+            'demam' => '',
+            'cabut_gigi' => '',
+            'hiv' => '',
+            'kontak_hepatitis' => '',
+            'sex_period' => '',
+            'riwayat_donor' => '',
+            'sarapan' => '',
+            'hamil' => ''
         ]);
 
+        if (auth()->user()->jenis_kelamin === 'Laki-Laki') {
+            $validated['hamil'] = '0';
+        }
+
         $data = Screaning::create($validated);
+
+
 
         $idScreaning = $data->id;
 
         User::where('id', auth()->user()->id)->update(['id_form' => $idScreaning]);
 
-        if ($validated['umur'] < 17
-        || $validated['umur'] > 50
-        || $validated['berat_badan'] < 47
-        || $validated['hiv'] == "Pernah"
-        || $validated['pasangan_hiv'] == "Pernah"
-        || $validated['kontak_hepatitis'] == "Pernah"
-        || $validated['suntik'] == "Pernah"
-        || $validated['hiv'] == "Pernah"
-        || $validated['sex_period'] == "Pernah"
-        || $validated['sex_period'] == "Iya"
-        || $validated['riwayat_donor'] == "<=3 Bulan") {
+        if ($validated['sehat'] != '1'
+        || $validated['minum_obat'] == '1'
+        || $validated['demam'] == '1'
+        || $validated['cabut_gigi'] == '1'
+        || $validated['hiv'] == '1'
+        || $validated['kontak_hepatitis'] == '1'
+        || $validated['sex_period'] == '1'
+        || $validated['riwayat_donor'] == '1'
+        || $validated['sarapan'] != '1'
+        || $validated['hamil']) {
             Hasil::create([
                 'hasil_form' => 'Tidak dapat mendonorkan darah',
                 'id_form' => $idScreaning
@@ -75,6 +82,7 @@ class ScreaningController extends Controller
                 'id_form' => $idScreaning
             ]);
         }
+
 
         //sesion flash
         session()->flash('berhasil', 'berhasil input form');

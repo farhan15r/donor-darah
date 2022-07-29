@@ -289,7 +289,6 @@
                 <div class="wave" id="wave3"></div>
                 <div class="wave" id="wave4"></div>
             </div>
-            <p>©2021 Kelompok 8 | All Rights Reserved</p>
         </footer>
     </div>
 

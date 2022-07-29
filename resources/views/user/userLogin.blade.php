@@ -22,7 +22,7 @@
         </script>
     @endif
 
-    <img class="background" src="/img/background.png">
+    <img class="background" src="/img/background.jpeg">
     <img class="logo-tangan" src="/img/background2.png">
 
     @error('username')
