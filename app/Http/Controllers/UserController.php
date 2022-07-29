@@ -34,7 +34,6 @@ class UserController extends Controller
 
         //backcript password
         $validated['password'] = bcrypt($validated['password']);
-        $validated['is_admin'] = true;
 
         User::create($validated);
 
