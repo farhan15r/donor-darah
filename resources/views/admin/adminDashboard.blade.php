@@ -80,6 +80,9 @@
                                         </a>
                                         <br>
                                         <br>
+                                        <a href="/edit/{{ $user->nik }}"> <button>Edit User</button>
+                                        </a>
+
                                         @if ($user->id_form)
                                             <a href="/form/show/{{ $user->id_form }}"> <button>Form User</button>
                                             </a>

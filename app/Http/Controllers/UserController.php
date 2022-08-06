@@ -135,8 +135,14 @@ class UserController extends Controller
      * @param  \App\Models\users  $users
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($nik)
     {
+        if (auth()->user()->is_admin) {
+            $data = [
+                'user' => User::where('nik', $nik)->get(),
+            ];
+            return view('user.userUpdateAdmin', $data);
+        }
         return view('user.userUpdate', [
             'user' => auth()->user()
         ]);
@@ -183,5 +189,27 @@ class UserController extends Controller
         $user->delete();
 
         return redirect('/dashboard')->with('success', 'Post has been deleted');
+    }
+
+    public function updateAdmin(Request $request, $nik)
+    {
+        $user = User::firstWhere('nik', $nik);
+        $validated = $request->validate([
+            'nama' => 'required',
+            'nik' => 'required',
+            'no_telepon' => 'required',
+            'email' => 'required',
+            'tempat_lahir' => 'required',
+            'alamat_lengkap' => 'required',
+            'jenis_kelamin' => '',
+        ]);
+
+        if ($user->id_form) {
+            $validated['jenis_kelamin'] = $user->jenis_kelamin;
+        };
+
+        User::where('id', $user->id)->update($validated);
+
+        return redirect('/dashboard');
     }
 }

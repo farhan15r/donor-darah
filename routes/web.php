@@ -44,3 +44,5 @@ Route::get('/profile', [UserController::class, 'show'])->middleware('auth');
 Route::get('/profile/update', [UserController::class, 'edit'])->middleware('auth');
 Route::post('/profile/update', [UserController::class, 'update']);
 Route::get('/profile/delete/{user:nik}', [UserController::class, 'destroy'])->middleware('auth');
+Route::get('/edit/{user:nik}', [UserController::class, 'edit'])->middleware('auth');
+Route::post('/edit/{user:nik}', [UserController::class, 'updateAdmin'])->middleware('auth');
