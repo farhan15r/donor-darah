@@ -43,7 +43,11 @@
         <div class="content">
             <div class="box">
                 <div class="form">
-                    <h3 class="box-title">DATABASE CENTER</h3> <br>
+                    <h3 class="box-title">DATABASE CENTER</h3>
+                    <div style="display:flex; justify-content:center">
+                        <a href="/generate-pdf" class="box-title"><button>PDF</button></a>
+                    </div>
+                    <br>
                     <div class="tabel">
                         <table border="1" cellpadding="16">
                             <tr>
@@ -80,12 +84,10 @@
                                         </a>
                                         <br>
                                         <br>
-                                        <a href="/edit/{{ $user->nik }}"> <button>Edit User</button>
-                                        </a>
+                                        <a href="/edit/{{ $user->nik }}"> <button>Edit User</button></a>
 
                                         @if ($user->id_form)
-                                            <a href="/form/show/{{ $user->id_form }}"> <button>Form User</button>
-                                            </a>
+                                            <a href="/form/show/{{ $user->id_form }}"> <button>Form User</button></a>
                                         @endif
 
                                     </td>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\ScreaningController;
 use GuzzleHttp\Middleware;
 
@@ -46,3 +47,5 @@ Route::post('/profile/update', [UserController::class, 'update']);
 Route::get('/profile/delete/{user:nik}', [UserController::class, 'destroy'])->middleware('auth');
 Route::get('/edit/{user:nik}', [UserController::class, 'edit'])->middleware('auth');
 Route::post('/edit/{user:nik}', [UserController::class, 'updateAdmin'])->middleware('auth');
+
+Route::get('generate-pdf', [PDFController::class, 'generatePDF'])->middleware('auth');
