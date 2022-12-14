@@ -16,7 +16,7 @@
                 <ul>
                     <li><img src="/img/logo1.png"></li>
                     <li>
-                        <h1>AYO DONOR</h1>
+                        <h1>Donor Darah</h1>
                     </li>
                 </ul>
             </div>
