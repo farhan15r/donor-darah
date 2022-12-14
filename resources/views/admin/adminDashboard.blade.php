@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/CSS/landingadmin.css">
-    <title>Admin Page</title>
+    <title>Halaman Admin</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
                 <ul>
                     <li><img src="/img/Palang.png"></li>
                     <li>
-                        <h1>AYO DONOR</h1>
+                        <h1>Donor DARAH</h1>
                     </li>
                 </ul>
             </div>
@@ -58,8 +58,8 @@
                                 <th>No.Telepon</th>
                                 <th>Email</th>
                                 <th>Alamat Lengkap</th>
-                                <th>Tempat Lahir</th>
-                                <th>Aksi</th>
+                                <th>Umur</th>
+                                
                             </tr>
                             <?php
                             $nomor = 1;
@@ -74,7 +74,7 @@
                                     <td>{{ $user->no_telepon }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->alamat_lengkap }}</td>
-                                    <td>{{ $user->tempat_lahir }}</td>
+                                    <td>{{ $user->Umur }}</td>
                                     <td>
                                         <a href="/profile/delete/{{ $user->nik }}" class="delete"
                                             onclick="return confirm('Apakah anda yakin ingin menghapus data pada Nama: {{ $user->nama }}?')"><span
@@ -84,7 +84,7 @@
                                         </a>
                                         <br>
                                         <br>
-                                        <a href="/edit/{{ $user->nik }}"> <button>Edit User</button></a>
+                                        <a href="/edit/{{ $user->nik }}"> <button>Edit Pengguna</button></a>
 
                                         @if ($user->id_form)
                                             <a href="/form/show/{{ $user->id_form }}"> <button>Form User</button></a>

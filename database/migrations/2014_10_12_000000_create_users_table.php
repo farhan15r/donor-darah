@@ -20,7 +20,7 @@ return new class extends Migration {
             $table->string('nik');
             $table->string('no_telepon');
             $table->string('email');
-            $table->string('tempat_lahir');
+            $table->string('Umur');
             $table->string('alamat_lengkap');
             $table->string('jenis_kelamin');
             $table->string('id_form')->nullable();
